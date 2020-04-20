@@ -1,58 +1,52 @@
-package com.qa.garage;
+package garage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Garage {
 
+	private List<Vehicle> vehicles = new ArrayList<>();
+
 	public Garage() {
+		super();
 	}
 
-	// List of vehicles
-	private List<Vehicle> vehicles = new ArrayList();
-
-	// Add vehicles to the garage
-	public boolean addVehicle(Vehicle v) {
-		return this.vehicles.add(v);
+	public boolean addVehicle(Vehicle vehicle) {
+		return this.vehicles.add(vehicle);
 	}
 
-	// Remove vehicles from the garage
-	public boolean removeVehicle(Vehicle v) {
-		return this.vehicles.remove(v);
+	public boolean removeVehicle(Vehicle vehicle) {
+		return this.vehicles.remove(vehicle);
 	}
-	
-	// Remove vehicle by type
-	public void  removeVehicleType(Class<?> type) {
+
+	public void removeVehiclesByType(Class<?> clazz) {
 		List<Vehicle> toRemove = new ArrayList<>();
 		for (Vehicle v : vehicles) {
-			if (v.getClass() == type) {
+			if (v.getClass() == clazz) {
 				toRemove.add(v);
 			}
 		}
 		vehicles.removeAll(toRemove);
 	}
-	
-	
-	// List all vehicles
-	public void listAll() {
-		for (Vehicle v : vehicles) {
-			System.out.println(v.toString());
-		}
+
+	public boolean emptyGarage() {
+		this.vehicles.clear();
+		return this.vehicles.size() == 0;
 	}
 
-	// Empty garage
-	public int emptyGarage() {
-		this.vehicles.clear();
-		return vehicles.size();
-	}
-	
-	// Calculate bill 
-	
 	public float calcBill() {
-		float initial = 0f; 
-		
-		return 0;
-		
+		float bill = 0f;
+		for (Vehicle v : vehicles) {
+			bill += v.calcBill(); // bill = bill + v.calcBill();
+		}
+		return bill;
+	}
+
+	public void printVehicles() {
+		for (Vehicle v : vehicles) {
+			System.out.println(v);
+		}
 	}
 
 }

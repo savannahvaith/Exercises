@@ -1,10 +1,4 @@
-package com.qa.garage;
-
-/*
- * Abstract classes are mostly used to provide a base for sub class to extend & implement 
- * the abstract methods and override / use the implementation method in abstract class. 
- * An abstract class cannot be instantiated and therefore cannot be used directly. 
- */
+package garage;
 
 public abstract class Vehicle {
 
@@ -23,12 +17,6 @@ public abstract class Vehicle {
 		this.noOfWheels = noOfWheels;
 	}
 
-	/*
-	 * Abstract method is declared without implementation - without {} If a class
-	 * includes an abstract method, then the CLASS itself must be declared as
-	 * abstract.
-	 */
-	public abstract float calcBill();
 
 	public int getWeight() {
 		return weight;
@@ -54,9 +42,11 @@ public abstract class Vehicle {
 		this.noOfWheels = noOfWheels;
 	}
 
+	public abstract float calcBill();
+
 	@Override
 	public String toString() {
-		return "Vehicle weight:" + weight + ", topSpeed:" + topSpeed + ", noOfWheels:" + noOfWheels;
+		return "weight=" + weight + ", topSpeed=" + topSpeed + ", noOfWheels=" + noOfWheels + "";
 	}
-	
+
 }
